@@ -1,0 +1,22 @@
+<%if restaurant_owner_signed_in? %>
+    <h2>Listing Orders</h2>
+
+    <table  class="table table-hover">
+      <tr>
+        <th>Order Number</th>
+        <th>Status</th>
+        <th>View</th>
+
+      </tr>
+
+      <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to "#{order.id}", order_path(order) %></td>
+            <td><%= order.status %></td>
+            <td><a href= <%=order_path(order)%> class="btn btn-primary btn-lg active" role="button">View Order</a></td>
+          </tr>
+      <% end %>
+    </table>
+<% else %>
+    <h1>Page for Restaurant Owners only!</h1>
+<% end %>

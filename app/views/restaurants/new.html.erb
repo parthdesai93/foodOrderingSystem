@@ -1,0 +1,17 @@
+<%= form_for :restaurant, url: restaurants_path do |f| %>
+
+    <h2 class="form-signin-heading">Add New Restaurants</h2>
+
+    <div class="form-group">
+      <%= f.text_field :name, autofocus: true, :class => 'form-control input-lg', :placeholder => 'Name of Restaurant'%>
+      <%= f.select :description, ['Canadian', 'Chinese', 'Indian', 'Middle Eastern', 'Mexican', 'Sushi'] %>
+      <%= f.text_field :location, :class => 'form-control input-lg', :placeholder => 'Location'%>
+      <%= f.text_field :email, :class => 'form-control input-lg', :placeholder => 'Email'%>
+      <%= f.text_field :telephone, :class => 'form-control input-lg', :placeholder => 'Phone'%>
+      <%= f.text_field :service_hours, :class => 'form-control input-lg', :placeholder => 'Hours of Operation'%>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Add Restaurant", :class => 'btn btn-primary btn-lg btn-block' %>
+    </div>
+<% end %>

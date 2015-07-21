@@ -1,0 +1,29 @@
+<p>
+  <strong>Order For:</strong>
+  <%= User.find(@order.user_id).first_name%> <%= User.find(@order.user_id).last_name%>
+  <br/>
+  <strong>Phone:</strong>
+  <%= User.find(@order.user_id).phone%>
+  <br/>
+</p>
+<p>
+<div class="btn-group">
+  <%= link_to "Mark as Ready", @order, { data: { confirm: "Are you sure you wish to update order status as completed?" }, method: :put, remote: true, class: "btn btn-success" } %>
+</div>
+</p>
+<table class="table table-hover">
+  <tr>
+    <th>Menu Item</th>
+    <th>Quantity</th>
+  </tr>
+
+  <% order_items = OrderItem.find_all_by_menu_item_id(MenuItem.find_all_by_restaurant_id(Restaurant.find_all_by_restaurant_owner_id(current_restaurant_owner.id))) %>
+  <% order_items.each do |order_item| %>
+      <% if order_item.order_id == @order.id %>
+          <tr>
+            <td><%= MenuItem.find(order_item.menu_item_id).name %></td>
+            <td><%= order_item.quantity %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
